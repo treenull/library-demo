@@ -9,6 +9,12 @@
     <result column="create_date" jdbcType="CHAR" property="createDate" />
     <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
+  <!--  手动添加自定义方法-->
+  <!-- 用户登录检测 -->
+  <select id="checkUser" parameterType="String" resultType="com.wyj.library.model.User">
+  		select * from user where loginname=#{loginname} and password=#{password}
+ </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

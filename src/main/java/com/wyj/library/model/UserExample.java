@@ -1,8 +1,11 @@
 package com.wyj.library.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component("userExample")
 public class UserExample {
     protected String orderByClause;
 

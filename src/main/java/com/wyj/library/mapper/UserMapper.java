@@ -2,10 +2,17 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.User;
 import com.wyj.library.model.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+@Component("userMapper")
 public interface UserMapper {
+
+    //手动添加的登录用户检测方法
+    User checkUser(@Param("loginname") String loginname,@Param("password") String password);
+
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

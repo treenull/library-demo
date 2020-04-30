@@ -13,6 +13,11 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
+    public User checkUser(String loginname, String password){
+        return userMapper.checkUser(loginname,password);
+
+    }
+
     public List<User> getAllUser(UserExample example){
         return userMapper.selectByExample(example);
     }
