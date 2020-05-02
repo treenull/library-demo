@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserMapper {
 
     //手动添加的登录用户检测方法
-    User checkUser(@Param("loginname") String loginname,@Param("password") String password);
+    List<User> checkUser(@Param("loginname") String loginname,@Param("password") String password);
 
     long countByExample(UserExample example);
 

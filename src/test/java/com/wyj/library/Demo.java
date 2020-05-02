@@ -25,7 +25,7 @@ public class Demo {
     public void run(){
         String loginname = "admin";
         String password = "123456";
-        User user =userService.checkUser(loginname, password);
+        List<User> user =userService.checkUser(loginname, password);
         if (user!=null){
             System.out.println(user);
         }else{

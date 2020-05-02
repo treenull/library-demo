@@ -3,6 +3,8 @@ server:
   servlet:
     context-path:
 spring:
+  resources:
+    static-locations: classpath:/templates/
   thymeleaf:
     mode: HTML
     encoding: UTF-8

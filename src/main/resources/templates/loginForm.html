@@ -22,7 +22,6 @@
     <div class="login layui-anim layui-anim-up">
         <div class="message">x-admin2.0-管理登录</div>
         <div id="darkbannerwrap"></div>
-        
         <form class="layui-form" th:action="@{/login}" method="post">
             <input name="loginname" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
@@ -30,6 +29,8 @@
             <hr class="hr15">
             <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >
+            <!--判断-->
+            <p style="color:red" th:text="${message}" th:if="${not #strings.isEmpty(message)}"></p>
         </form>
     </div>
 <!--    <script>-->
@@ -43,7 +44,7 @@
 <!--              form.on('submit(login)', function(data){-->
 <!--                // alert(888)-->
 <!--                layer.msg(JSON.stringify(data.field),function(){-->
-<!--                    location.href='index.html'-->
+<!--                    location.href='main.html'-->
 <!--                });-->
 <!--                return false;-->
 <!--              });-->
