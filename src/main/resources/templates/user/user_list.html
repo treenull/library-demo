@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="/css/font.css">
         <link rel="stylesheet" href="/css/xadmin.css">
-        <script src="/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="/js/xadmin.js"></script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','user_add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','/user/add',600,500)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -60,7 +60,8 @@
                                   <th>ID</th>
                                   <th>登录名</th>
                                   <th>角色</th>
-                                  <th>加入时间</th>
+                                  <th>等级</th>
+                                  <th>更新时间</th>
                                   <th>状态</th>
                                   <th>操作</th>
                                 </tr>
@@ -75,19 +76,23 @@
                                     <!--<td>[[${user.loginname}]]</td>-->
                                     <td th:text="${user.loginname}"></td>
                                     <td th:text="${user.username}"></td>
-                                    <td th:text="${user.createDate}"></td>
+                                    <td th:text="${user.status}"></td>
+                                    <td th:text="${user.createTime}"></td>
                                   <td class="td-status">
                                     <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                                   <td class="td-manage">
                                     <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                       <i class="layui-icon">&#xe601;</i>
                                     </a>
-                                    <a title="编辑"  onclick="xadmin.open('编辑','user_edit.html')" href="javascript:;">
+                                    <a title="编辑"  onclick="xadmin.open('编辑','/user/edit',600,500,)" th:href="@{/user/edit/}+${user.id}">
                                       <i class="layui-icon">&#xe642;</i>
                                     </a>
-                                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                      <i class="layui-icon">&#xe640;</i>
-                                    </a>
+                                      <a title="删除" th:attr="del_uri=@{/user/delete/}+${user.id}" onclick="member_del(this,'${user.id}')" href="javascript:;">
+                                          <i class="layui-icon">&#xe640;</i>
+                                      </a>
+<!--                                    <a title="删除" onclick="member_del(this,'${user.id}')" href="javascript:;">-->
+<!--                                      <i class="layui-icon">&#xe640;</i>-->
+<!--                                    </a>-->
                                   </td>
                                 </tr>
                               </tbody>
@@ -106,6 +111,9 @@
                             </div>
                         </div>
                     </div>
+                    <form id="deleteUser" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,6 +157,7 @@
 
           });
       }
+
 
       /*用户-删除*/
       function member_del(obj,id){

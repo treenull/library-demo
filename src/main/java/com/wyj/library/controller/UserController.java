@@ -6,9 +6,7 @@ import com.wyj.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -48,23 +46,61 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public String userList(Model model){
+    public String toUserList(Model model){
         List<User> allUser = userService.getAllUser(example);
         model.addAttribute("list",allUser);
         return "user/user_list";
     }
 
     @GetMapping("/add")
-    public String userAdd(){
+    public String toUserAdd(){
         return "user/user_add";
     }
 
-    @GetMapping("/edit")
-    public String userEdit(){
+    @PostMapping("/add")
+    public String addUser(User user){
+        userService.insertUser(user);
+        System.out.println("添加管理员信息"+user);
+        return "user/user_list";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String toEditUser(@PathVariable("id") Integer id,Model model){
+        User oneUser = userService.getOneUser(id);
+        System.out.println(oneUser);
+        model.addAttribute("user",oneUser);
         return "user/user_edit";
     }
 
+//    @GetMapping("/edit")
+//    public String updateUser(User user){
+//        System.out.println("修改后的数据"+user);
+//        return "user/list";
+//    }
 
+    @PutMapping("/edit")
+    public String updateUser(User user){
+        userService.updateUser(user);
+        System.out.println("修改后的数据"+user);
+        return "user/user_list";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer id){
+        System.out.println(id);
+//        if(id!=null){
+//            userService.deleteUser(id);
+//        }
+        return "redirect:/user/list";
+    }
+
+//    @GetMapping("/delete/{id}")
+//    public String deleteUser(@PathVariable("id")Integer id){
+//        System.out.println("删除数据的id值"+id);
+//        userService.deleteUser(id);
+//        return "redirect:/user/list";
+//    }
 //    @GetMapping("/hello")
 //        public String hello(){
 //        return "hello";

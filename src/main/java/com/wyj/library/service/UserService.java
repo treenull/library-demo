@@ -15,10 +15,25 @@ public class UserService {
 
     public List<User> checkUser(String loginname, String password){
         return userMapper.checkUser(loginname,password);
-
     }
 
     public List<User> getAllUser(UserExample example){
         return userMapper.selectByExample(example);
+    }
+
+    public int insertUser(User user){
+        return userMapper.insertSelective(user);
+    }
+
+    public User getOneUser(Integer id){
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateUser(User user){
+        return userMapper.updateByPrimaryKey(user);
+    }
+
+    public int deleteUser(Integer id){
+        return userMapper.deleteByPrimaryKey(id);
     }
 }
