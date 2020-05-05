@@ -1,5 +1,7 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -9,7 +11,7 @@ public class User {
 
     private Integer status;
 
-    private String createDate;
+    private Date createTime;
 
     private String username;
 
@@ -45,12 +47,12 @@ public class User {
         this.status = status;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate == null ? null : createDate.trim();
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getUsername() {
@@ -68,7 +70,7 @@ public class User {
                 ", loginname='" + loginname + '\'' +
                 ", password='" + password + '\'' +
                 ", status=" + status +
-                ", createDate='" + createDate + '\'' +
+                ", createTime=" + createTime +
                 ", username='" + username + '\'' +
                 '}';
     }

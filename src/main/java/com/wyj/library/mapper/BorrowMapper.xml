@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wyj.library.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.wyj.library.model.User">
+<mapper namespace="com.wyj.library.mapper.BorrowMapper">
+  <resultMap id="BaseResultMap" type="com.wyj.library.model.Borrow">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
+    <result column="card_id" jdbcType="INTEGER" property="cardId" />
+    <result column="effective_date" jdbcType="VARCHAR" property="effectiveDate" />
+    <result column="expire_date" jdbcType="VARCHAR" property="expireDate" />
   </resultMap>
-  <!--  手动添加自定义方法-->
-  <!-- 用户登录检测 -->
-  <select id="checkUser" parameterType="String" resultType="com.wyj.library.model.User">
-  		select * from user where loginname=#{loginname} and password=#{password}
- </select>
-
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -74,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginname, password, status, create_time, username
+    id, isbn, book_name, reader_name, card_id, effective_date, expire_date
   </sql>
-  <select id="selectByExample" parameterType="com.wyj.library.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.wyj.library.model.BorrowExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,96 +88,105 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from borrow
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
+    delete from borrow
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wyj.library.model.UserExample">
-    delete from user
+  <delete id="deleteByExample" parameterType="com.wyj.library.model.BorrowExample">
+    delete from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wyj.library.model.User">
-    insert into user (id, loginname, password, 
-      status, create_time, username
-      )
-    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.wyj.library.model.Borrow">
+    insert into borrow (id, isbn, book_name, 
+      reader_name, card_id, effective_date, 
+      expire_date)
+    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{readerName,jdbcType=VARCHAR}, #{cardId,jdbcType=INTEGER}, #{effectiveDate,jdbcType=VARCHAR}, 
+      #{expireDate,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wyj.library.model.User">
-    insert into user
+  <insert id="insertSelective" parameterType="com.wyj.library.model.Borrow">
+    insert into borrow
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="loginname != null">
-        loginname,
+      <if test="isbn != null">
+        isbn,
       </if>
-      <if test="password != null">
-        password,
+      <if test="bookName != null">
+        book_name,
       </if>
-      <if test="status != null">
-        status,
+      <if test="readerName != null">
+        reader_name,
       </if>
-      <if test="createTime != null">
-        create_time,
+      <if test="cardId != null">
+        card_id,
       </if>
-      <if test="username != null">
-        username,
+      <if test="effectiveDate != null">
+        effective_date,
+      </if>
+      <if test="expireDate != null">
+        expire_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="loginname != null">
-        #{loginname,jdbcType=VARCHAR},
+      <if test="isbn != null">
+        #{isbn,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="bookName != null">
+        #{bookName,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="readerName != null">
+        #{readerName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="cardId != null">
+        #{cardId,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wyj.library.model.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+  <select id="countByExample" parameterType="com.wyj.library.model.BorrowExample" resultType="java.lang.Long">
+    select count(*) from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update borrow
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.loginname != null">
-        loginname = #{record.loginname,jdbcType=VARCHAR},
+      <if test="record.isbn != null">
+        isbn = #{record.isbn,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.bookName != null">
+        book_name = #{record.bookName,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+      <if test="record.readerName != null">
+        reader_name = #{record.readerName,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.cardId != null">
+        card_id = #{record.cardId,jdbcType=INTEGER},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.effectiveDate != null">
+        effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expireDate != null">
+        expire_date = #{record.expireDate,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -190,45 +194,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update borrow
     set id = #{record.id,jdbcType=INTEGER},
-      loginname = #{record.loginname,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      username = #{record.username,jdbcType=VARCHAR}
+      isbn = #{record.isbn,jdbcType=VARCHAR},
+      book_name = #{record.bookName,jdbcType=VARCHAR},
+      reader_name = #{record.readerName,jdbcType=VARCHAR},
+      card_id = #{record.cardId,jdbcType=INTEGER},
+      effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
+      expire_date = #{record.expireDate,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wyj.library.model.User">
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyj.library.model.Borrow">
+    update borrow
     <set>
-      <if test="loginname != null">
-        loginname = #{loginname,jdbcType=VARCHAR},
+      <if test="isbn != null">
+        isbn = #{isbn,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+      <if test="bookName != null">
+        book_name = #{bookName,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+      <if test="readerName != null">
+        reader_name = #{readerName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="effectiveDate != null">
+        effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        expire_date = #{expireDate,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.User">
-    update user
-    set loginname = #{loginname,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      username = #{username,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.Borrow">
+    update borrow
+    set isbn = #{isbn,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      reader_name = #{readerName,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=INTEGER},
+      effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

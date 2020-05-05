@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wyj.library.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.wyj.library.model.User">
+<mapper namespace="com.wyj.library.mapper.DocumentMapper">
+  <resultMap id="BaseResultMap" type="com.wyj.library.model.Document">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_date" jdbcType="VARCHAR" property="createDate" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
-  <!--  手动添加自定义方法-->
-  <!-- 用户登录检测 -->
-  <select id="checkUser" parameterType="String" resultType="com.wyj.library.model.User">
-  		select * from user where loginname=#{loginname} and password=#{password}
- </select>
-
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -74,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginname, password, status, create_time, username
+    id, title, filename, remark, create_date, user_id
   </sql>
-  <select id="selectByExample" parameterType="com.wyj.library.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.wyj.library.model.DocumentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from document
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,96 +87,96 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from document
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
+    delete from document
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wyj.library.model.UserExample">
-    delete from user
+  <delete id="deleteByExample" parameterType="com.wyj.library.model.DocumentExample">
+    delete from document
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wyj.library.model.User">
-    insert into user (id, loginname, password, 
-      status, create_time, username
+  <insert id="insert" parameterType="com.wyj.library.model.Document">
+    insert into document (id, title, filename, 
+      remark, create_date, user_id
       )
-    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wyj.library.model.User">
-    insert into user
+  <insert id="insertSelective" parameterType="com.wyj.library.model.Document">
+    insert into document
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="loginname != null">
-        loginname,
+      <if test="title != null">
+        title,
       </if>
-      <if test="password != null">
-        password,
+      <if test="filename != null">
+        filename,
       </if>
-      <if test="status != null">
-        status,
+      <if test="remark != null">
+        remark,
       </if>
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="username != null">
-        username,
+      <if test="userId != null">
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="loginname != null">
-        #{loginname,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wyj.library.model.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+  <select id="countByExample" parameterType="com.wyj.library.model.DocumentExample" resultType="java.lang.Long">
+    select count(*) from document
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update document
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.loginname != null">
-        loginname = #{record.loginname,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.filename != null">
+        filename = #{record.filename,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -190,45 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update document
     set id = #{record.id,jdbcType=INTEGER},
-      loginname = #{record.loginname,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      username = #{record.username,jdbcType=VARCHAR}
+      title = #{record.title,jdbcType=VARCHAR},
+      filename = #{record.filename,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wyj.library.model.User">
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyj.library.model.Document">
+    update document
     <set>
-      <if test="loginname != null">
-        loginname = #{loginname,jdbcType=VARCHAR},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.User">
-    update user
-    set loginname = #{loginname,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      username = #{username,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.Document">
+    update document
+    set title = #{title,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
