@@ -3,6 +3,7 @@ package com.wyj.library.model;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component("documentExample")
@@ -237,73 +238,73 @@ public class DocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andFilenameIsNull() {
-            addCriterion("filename is null");
+        public Criteria andFileNameIsNull() {
+            addCriterion("file_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameIsNotNull() {
-            addCriterion("filename is not null");
+        public Criteria andFileNameIsNotNull() {
+            addCriterion("file_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameEqualTo(String value) {
-            addCriterion("filename =", value, "filename");
+        public Criteria andFileNameEqualTo(String value) {
+            addCriterion("file_name =", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameNotEqualTo(String value) {
-            addCriterion("filename <>", value, "filename");
+        public Criteria andFileNameNotEqualTo(String value) {
+            addCriterion("file_name <>", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameGreaterThan(String value) {
-            addCriterion("filename >", value, "filename");
+        public Criteria andFileNameGreaterThan(String value) {
+            addCriterion("file_name >", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameGreaterThanOrEqualTo(String value) {
-            addCriterion("filename >=", value, "filename");
+        public Criteria andFileNameGreaterThanOrEqualTo(String value) {
+            addCriterion("file_name >=", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameLessThan(String value) {
-            addCriterion("filename <", value, "filename");
+        public Criteria andFileNameLessThan(String value) {
+            addCriterion("file_name <", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameLessThanOrEqualTo(String value) {
-            addCriterion("filename <=", value, "filename");
+        public Criteria andFileNameLessThanOrEqualTo(String value) {
+            addCriterion("file_name <=", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameLike(String value) {
-            addCriterion("filename like", value, "filename");
+        public Criteria andFileNameLike(String value) {
+            addCriterion("file_name like", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameNotLike(String value) {
-            addCriterion("filename not like", value, "filename");
+        public Criteria andFileNameNotLike(String value) {
+            addCriterion("file_name not like", value, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameIn(List<String> values) {
-            addCriterion("filename in", values, "filename");
+        public Criteria andFileNameIn(List<String> values) {
+            addCriterion("file_name in", values, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameNotIn(List<String> values) {
-            addCriterion("filename not in", values, "filename");
+        public Criteria andFileNameNotIn(List<String> values) {
+            addCriterion("file_name not in", values, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameBetween(String value1, String value2) {
-            addCriterion("filename between", value1, value2, "filename");
+        public Criteria andFileNameBetween(String value1, String value2) {
+            addCriterion("file_name between", value1, value2, "fileName");
             return (Criteria) this;
         }
 
-        public Criteria andFilenameNotBetween(String value1, String value2) {
-            addCriterion("filename not between", value1, value2, "filename");
+        public Criteria andFileNameNotBetween(String value1, String value2) {
+            addCriterion("file_name not between", value1, value2, "fileName");
             return (Criteria) this;
         }
 
@@ -387,62 +388,52 @@ public class DocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateEqualTo(String value) {
+        public Criteria andCreateDateEqualTo(Date value) {
             addCriterion("create_date =", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateNotEqualTo(String value) {
+        public Criteria andCreateDateNotEqualTo(Date value) {
             addCriterion("create_date <>", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateGreaterThan(String value) {
+        public Criteria andCreateDateGreaterThan(Date value) {
             addCriterion("create_date >", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateGreaterThanOrEqualTo(String value) {
+        public Criteria andCreateDateGreaterThanOrEqualTo(Date value) {
             addCriterion("create_date >=", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateLessThan(String value) {
+        public Criteria andCreateDateLessThan(Date value) {
             addCriterion("create_date <", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateLessThanOrEqualTo(String value) {
+        public Criteria andCreateDateLessThanOrEqualTo(Date value) {
             addCriterion("create_date <=", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateLike(String value) {
-            addCriterion("create_date like", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateNotLike(String value) {
-            addCriterion("create_date not like", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateIn(List<String> values) {
+        public Criteria andCreateDateIn(List<Date> values) {
             addCriterion("create_date in", values, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateNotIn(List<String> values) {
+        public Criteria andCreateDateNotIn(List<Date> values) {
             addCriterion("create_date not in", values, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateBetween(String value1, String value2) {
+        public Criteria andCreateDateBetween(Date value1, Date value2) {
             addCriterion("create_date between", value1, value2, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateNotBetween(String value1, String value2) {
+        public Criteria andCreateDateNotBetween(Date value1, Date value2) {
             addCriterion("create_date not between", value1, value2, "createDate");
             return (Criteria) this;
         }

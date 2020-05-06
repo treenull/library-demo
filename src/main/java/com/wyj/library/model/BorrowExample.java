@@ -3,6 +3,8 @@ package com.wyj.library.model;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Component("borrowExample")
@@ -105,6 +107,32 @@ public class BorrowExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -307,6 +335,76 @@ public class BorrowExample {
             return (Criteria) this;
         }
 
+        public Criteria andReaderIdIsNull() {
+            addCriterion("reader_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdIsNotNull() {
+            addCriterion("reader_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdEqualTo(String value) {
+            addCriterion("reader_id =", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdNotEqualTo(String value) {
+            addCriterion("reader_id <>", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdGreaterThan(String value) {
+            addCriterion("reader_id >", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdGreaterThanOrEqualTo(String value) {
+            addCriterion("reader_id >=", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdLessThan(String value) {
+            addCriterion("reader_id <", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdLessThanOrEqualTo(String value) {
+            addCriterion("reader_id <=", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdLike(String value) {
+            addCriterion("reader_id like", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdNotLike(String value) {
+            addCriterion("reader_id not like", value, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdIn(List<String> values) {
+            addCriterion("reader_id in", values, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdNotIn(List<String> values) {
+            addCriterion("reader_id not in", values, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdBetween(String value1, String value2) {
+            addCriterion("reader_id between", value1, value2, "readerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReaderIdNotBetween(String value1, String value2) {
+            addCriterion("reader_id not between", value1, value2, "readerId");
+            return (Criteria) this;
+        }
+
         public Criteria andReaderNameIsNull() {
             addCriterion("reader_name is null");
             return (Criteria) this;
@@ -387,193 +485,183 @@ public class BorrowExample {
             return (Criteria) this;
         }
 
-        public Criteria andCardIdEqualTo(Integer value) {
+        public Criteria andCardIdEqualTo(String value) {
             addCriterion("card_id =", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdNotEqualTo(Integer value) {
+        public Criteria andCardIdNotEqualTo(String value) {
             addCriterion("card_id <>", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdGreaterThan(Integer value) {
+        public Criteria andCardIdGreaterThan(String value) {
             addCriterion("card_id >", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCardIdGreaterThanOrEqualTo(String value) {
             addCriterion("card_id >=", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdLessThan(Integer value) {
+        public Criteria andCardIdLessThan(String value) {
             addCriterion("card_id <", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCardIdLessThanOrEqualTo(String value) {
             addCriterion("card_id <=", value, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdIn(List<Integer> values) {
+        public Criteria andCardIdLike(String value) {
+            addCriterion("card_id like", value, "cardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCardIdNotLike(String value) {
+            addCriterion("card_id not like", value, "cardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCardIdIn(List<String> values) {
             addCriterion("card_id in", values, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdNotIn(List<Integer> values) {
+        public Criteria andCardIdNotIn(List<String> values) {
             addCriterion("card_id not in", values, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdBetween(Integer value1, Integer value2) {
+        public Criteria andCardIdBetween(String value1, String value2) {
             addCriterion("card_id between", value1, value2, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andCardIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCardIdNotBetween(String value1, String value2) {
             addCriterion("card_id not between", value1, value2, "cardId");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateIsNull() {
-            addCriterion("effective_date is null");
+        public Criteria andBeginDateIsNull() {
+            addCriterion("begin_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateIsNotNull() {
-            addCriterion("effective_date is not null");
+        public Criteria andBeginDateIsNotNull() {
+            addCriterion("begin_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateEqualTo(String value) {
-            addCriterion("effective_date =", value, "effectiveDate");
+        public Criteria andBeginDateEqualTo(Date value) {
+            addCriterionForJDBCDate("begin_date =", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotEqualTo(String value) {
-            addCriterion("effective_date <>", value, "effectiveDate");
+        public Criteria andBeginDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("begin_date <>", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThan(String value) {
-            addCriterion("effective_date >", value, "effectiveDate");
+        public Criteria andBeginDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("begin_date >", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThanOrEqualTo(String value) {
-            addCriterion("effective_date >=", value, "effectiveDate");
+        public Criteria andBeginDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("begin_date >=", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThan(String value) {
-            addCriterion("effective_date <", value, "effectiveDate");
+        public Criteria andBeginDateLessThan(Date value) {
+            addCriterionForJDBCDate("begin_date <", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThanOrEqualTo(String value) {
-            addCriterion("effective_date <=", value, "effectiveDate");
+        public Criteria andBeginDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("begin_date <=", value, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLike(String value) {
-            addCriterion("effective_date like", value, "effectiveDate");
+        public Criteria andBeginDateIn(List<Date> values) {
+            addCriterionForJDBCDate("begin_date in", values, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotLike(String value) {
-            addCriterion("effective_date not like", value, "effectiveDate");
+        public Criteria andBeginDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("begin_date not in", values, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateIn(List<String> values) {
-            addCriterion("effective_date in", values, "effectiveDate");
+        public Criteria andBeginDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("begin_date between", value1, value2, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotIn(List<String> values) {
-            addCriterion("effective_date not in", values, "effectiveDate");
+        public Criteria andBeginDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("begin_date not between", value1, value2, "beginDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateBetween(String value1, String value2) {
-            addCriterion("effective_date between", value1, value2, "effectiveDate");
+        public Criteria andEndDateIsNull() {
+            addCriterion("end_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotBetween(String value1, String value2) {
-            addCriterion("effective_date not between", value1, value2, "effectiveDate");
+        public Criteria andEndDateIsNotNull() {
+            addCriterion("end_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateIsNull() {
-            addCriterion("expire_date is null");
+        public Criteria andEndDateEqualTo(Date value) {
+            addCriterionForJDBCDate("end_date =", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateIsNotNull() {
-            addCriterion("expire_date is not null");
+        public Criteria andEndDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("end_date <>", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateEqualTo(String value) {
-            addCriterion("expire_date =", value, "expireDate");
+        public Criteria andEndDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("end_date >", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateNotEqualTo(String value) {
-            addCriterion("expire_date <>", value, "expireDate");
+        public Criteria andEndDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("end_date >=", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateGreaterThan(String value) {
-            addCriterion("expire_date >", value, "expireDate");
+        public Criteria andEndDateLessThan(Date value) {
+            addCriterionForJDBCDate("end_date <", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateGreaterThanOrEqualTo(String value) {
-            addCriterion("expire_date >=", value, "expireDate");
+        public Criteria andEndDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("end_date <=", value, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateLessThan(String value) {
-            addCriterion("expire_date <", value, "expireDate");
+        public Criteria andEndDateIn(List<Date> values) {
+            addCriterionForJDBCDate("end_date in", values, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateLessThanOrEqualTo(String value) {
-            addCriterion("expire_date <=", value, "expireDate");
+        public Criteria andEndDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("end_date not in", values, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateLike(String value) {
-            addCriterion("expire_date like", value, "expireDate");
+        public Criteria andEndDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("end_date between", value1, value2, "endDate");
             return (Criteria) this;
         }
 
-        public Criteria andExpireDateNotLike(String value) {
-            addCriterion("expire_date not like", value, "expireDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpireDateIn(List<String> values) {
-            addCriterion("expire_date in", values, "expireDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpireDateNotIn(List<String> values) {
-            addCriterion("expire_date not in", values, "expireDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpireDateBetween(String value1, String value2) {
-            addCriterion("expire_date between", value1, value2, "expireDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpireDateNotBetween(String value1, String value2) {
-            addCriterion("expire_date not between", value1, value2, "expireDate");
+        public Criteria andEndDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("end_date not between", value1, value2, "endDate");
             return (Criteria) this;
         }
     }

@@ -3,6 +3,8 @@ package com.wyj.library.model;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Component("bookExample")
@@ -105,6 +107,32 @@ public class BookExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -527,63 +555,53 @@ public class BookExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateEqualTo(String value) {
-            addCriterion("publication_date =", value, "publicationDate");
+        public Criteria andPublicationDateEqualTo(Date value) {
+            addCriterionForJDBCDate("publication_date =", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateNotEqualTo(String value) {
-            addCriterion("publication_date <>", value, "publicationDate");
+        public Criteria andPublicationDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("publication_date <>", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateGreaterThan(String value) {
-            addCriterion("publication_date >", value, "publicationDate");
+        public Criteria andPublicationDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("publication_date >", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateGreaterThanOrEqualTo(String value) {
-            addCriterion("publication_date >=", value, "publicationDate");
+        public Criteria andPublicationDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("publication_date >=", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateLessThan(String value) {
-            addCriterion("publication_date <", value, "publicationDate");
+        public Criteria andPublicationDateLessThan(Date value) {
+            addCriterionForJDBCDate("publication_date <", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateLessThanOrEqualTo(String value) {
-            addCriterion("publication_date <=", value, "publicationDate");
+        public Criteria andPublicationDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("publication_date <=", value, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateLike(String value) {
-            addCriterion("publication_date like", value, "publicationDate");
+        public Criteria andPublicationDateIn(List<Date> values) {
+            addCriterionForJDBCDate("publication_date in", values, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateNotLike(String value) {
-            addCriterion("publication_date not like", value, "publicationDate");
+        public Criteria andPublicationDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("publication_date not in", values, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateIn(List<String> values) {
-            addCriterion("publication_date in", values, "publicationDate");
+        public Criteria andPublicationDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("publication_date between", value1, value2, "publicationDate");
             return (Criteria) this;
         }
 
-        public Criteria andPublicationDateNotIn(List<String> values) {
-            addCriterion("publication_date not in", values, "publicationDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublicationDateBetween(String value1, String value2) {
-            addCriterion("publication_date between", value1, value2, "publicationDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublicationDateNotBetween(String value1, String value2) {
-            addCriterion("publication_date not between", value1, value2, "publicationDate");
+        public Criteria andPublicationDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("publication_date not between", value1, value2, "publicationDate");
             return (Criteria) this;
         }
 

@@ -1,43 +1,35 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class Reader {
     private Integer id;
 
-    private Integer stuId;
+    private String readerId;
 
     private String readerName;
 
     private String cardId;
 
-    private String address;
-
-    private String postCode;
-
-    private String tel;
+    private Integer sex;
 
     private String phone;
 
-    private String qqNum;
+    private String address;
+
+    private String qq;
 
     private String email;
 
-    private Integer sex;
-
     private String party;
 
-    private String birthday;
+    private Date birthday;
 
     private String race;
 
     private String education;
 
-    private String speciality;
-
-    private String hobby;
-
-    private String remark;
-
-    private String createDate;
+    private Date createDate;
 
     public Integer getId() {
         return id;
@@ -47,12 +39,12 @@ public class Reader {
         this.id = id;
     }
 
-    public Integer getStuId() {
-        return stuId;
+    public String getReaderId() {
+        return readerId;
     }
 
-    public void setStuId(Integer stuId) {
-        this.stuId = stuId;
+    public void setReaderId(String readerId) {
+        this.readerId = readerId == null ? null : readerId.trim();
     }
 
     public String getReaderName() {
@@ -71,28 +63,12 @@ public class Reader {
         this.cardId = cardId == null ? null : cardId.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getSex() {
+        return sex;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode == null ? null : postCode.trim();
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public String getPhone() {
@@ -103,12 +79,20 @@ public class Reader {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getQqNum() {
-        return qqNum;
+    public String getAddress() {
+        return address;
     }
 
-    public void setQqNum(String qqNum) {
-        this.qqNum = qqNum == null ? null : qqNum.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
     }
 
     public String getEmail() {
@@ -119,14 +103,6 @@ public class Reader {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
     public String getParty() {
         return party;
     }
@@ -135,12 +111,12 @@ public class Reader {
         this.party = party == null ? null : party.trim();
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday == null ? null : birthday.trim();
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getRace() {
@@ -159,35 +135,11 @@ public class Reader {
         this.education = education == null ? null : education.trim();
     }
 
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality == null ? null : speciality.trim();
-    }
-
-    public String getHobby() {
-        return hobby;
-    }
-
-    public void setHobby(String hobby) {
-        this.hobby = hobby == null ? null : hobby.trim();
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
-
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate == null ? null : createDate.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

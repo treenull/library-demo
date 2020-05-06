@@ -1,5 +1,7 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class Book {
     private Integer id;
 
@@ -13,7 +15,7 @@ public class Book {
 
     private String publisher;
 
-    private String publicationDate;
+    private Date publicationDate;
 
     private Integer last;
 
@@ -67,12 +69,12 @@ public class Book {
         this.publisher = publisher == null ? null : publisher.trim();
     }
 
-    public String getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate == null ? null : publicationDate.trim();
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public Integer getLast() {

@@ -2,12 +2,9 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.Reader;
 import com.wyj.library.model.ReaderExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Component("readerMapper")
 public interface ReaderMapper {
     long countByExample(ReaderExample example);
 

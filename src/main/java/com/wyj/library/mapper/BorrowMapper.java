@@ -2,12 +2,9 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.Borrow;
 import com.wyj.library.model.BorrowExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Component("borrowMapper")
 public interface BorrowMapper {
     long countByExample(BorrowExample example);
 

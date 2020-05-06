@@ -5,15 +5,17 @@ import java.util.Date;
 public class User {
     private Integer id;
 
-    private String loginname;
+    private String userId;
+
+    private String loginName;
+
+    private String userName;
 
     private String password;
 
     private Integer status;
 
-    private Date createTime;
-
-    private String username;
+    private Date createDate;
 
     public Integer getId() {
         return id;
@@ -23,12 +25,28 @@ public class User {
         this.id = id;
     }
 
-    public String getLoginname() {
-        return loginname;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setLoginname(String loginname) {
-        this.loginname = loginname == null ? null : loginname.trim();
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -47,31 +65,11 @@ public class User {
         this.status = status;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", loginname='" + loginname + '\'' +
-                ", password='" + password + '\'' +
-                ", status=" + status +
-                ", createTime=" + createTime +
-                ", username='" + username + '\'' +
-                '}';
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

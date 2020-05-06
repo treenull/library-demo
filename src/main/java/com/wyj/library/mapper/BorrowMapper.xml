@@ -3,12 +3,13 @@
 <mapper namespace="com.wyj.library.mapper.BorrowMapper">
   <resultMap id="BaseResultMap" type="com.wyj.library.model.Borrow">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="isbn" jdbcType="CHAR" property="isbn" />
     <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="reader_id" jdbcType="CHAR" property="readerId" />
     <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
-    <result column="card_id" jdbcType="INTEGER" property="cardId" />
-    <result column="effective_date" jdbcType="VARCHAR" property="effectiveDate" />
-    <result column="expire_date" jdbcType="VARCHAR" property="expireDate" />
+    <result column="card_id" jdbcType="CHAR" property="cardId" />
+    <result column="begin_date" jdbcType="DATE" property="beginDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, isbn, book_name, reader_name, card_id, effective_date, expire_date
+    id, isbn, book_name, reader_id, reader_name, card_id, begin_date, end_date
   </sql>
   <select id="selectByExample" parameterType="com.wyj.library.model.BorrowExample" resultMap="BaseResultMap">
     select
@@ -103,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.wyj.library.model.Borrow">
     insert into borrow (id, isbn, book_name, 
-      reader_name, card_id, effective_date, 
-      expire_date)
-    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
-      #{readerName,jdbcType=VARCHAR}, #{cardId,jdbcType=INTEGER}, #{effectiveDate,jdbcType=VARCHAR}, 
-      #{expireDate,jdbcType=VARCHAR})
+      reader_id, reader_name, card_id, 
+      begin_date, end_date)
+    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=CHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{readerId,jdbcType=CHAR}, #{readerName,jdbcType=VARCHAR}, #{cardId,jdbcType=CHAR}, 
+      #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.wyj.library.model.Borrow">
     insert into borrow
@@ -121,17 +122,20 @@
       <if test="bookName != null">
         book_name,
       </if>
+      <if test="readerId != null">
+        reader_id,
+      </if>
       <if test="readerName != null">
         reader_name,
       </if>
       <if test="cardId != null">
         card_id,
       </if>
-      <if test="effectiveDate != null">
-        effective_date,
+      <if test="beginDate != null">
+        begin_date,
       </if>
-      <if test="expireDate != null">
-        expire_date,
+      <if test="endDate != null">
+        end_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -139,22 +143,25 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="isbn != null">
-        #{isbn,jdbcType=VARCHAR},
+        #{isbn,jdbcType=CHAR},
       </if>
       <if test="bookName != null">
         #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="readerId != null">
+        #{readerId,jdbcType=CHAR},
       </if>
       <if test="readerName != null">
         #{readerName,jdbcType=VARCHAR},
       </if>
       <if test="cardId != null">
-        #{cardId,jdbcType=INTEGER},
+        #{cardId,jdbcType=CHAR},
       </if>
-      <if test="effectiveDate != null">
-        #{effectiveDate,jdbcType=VARCHAR},
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=DATE},
       </if>
-      <if test="expireDate != null">
-        #{expireDate,jdbcType=VARCHAR},
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -171,22 +178,25 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.isbn != null">
-        isbn = #{record.isbn,jdbcType=VARCHAR},
+        isbn = #{record.isbn,jdbcType=CHAR},
       </if>
       <if test="record.bookName != null">
         book_name = #{record.bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readerId != null">
+        reader_id = #{record.readerId,jdbcType=CHAR},
       </if>
       <if test="record.readerName != null">
         reader_name = #{record.readerName,jdbcType=VARCHAR},
       </if>
       <if test="record.cardId != null">
-        card_id = #{record.cardId,jdbcType=INTEGER},
+        card_id = #{record.cardId,jdbcType=CHAR},
       </if>
-      <if test="record.effectiveDate != null">
-        effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
+      <if test="record.beginDate != null">
+        begin_date = #{record.beginDate,jdbcType=DATE},
       </if>
-      <if test="record.expireDate != null">
-        expire_date = #{record.expireDate,jdbcType=VARCHAR},
+      <if test="record.endDate != null">
+        end_date = #{record.endDate,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -196,12 +206,13 @@
   <update id="updateByExample" parameterType="map">
     update borrow
     set id = #{record.id,jdbcType=INTEGER},
-      isbn = #{record.isbn,jdbcType=VARCHAR},
+      isbn = #{record.isbn,jdbcType=CHAR},
       book_name = #{record.bookName,jdbcType=VARCHAR},
+      reader_id = #{record.readerId,jdbcType=CHAR},
       reader_name = #{record.readerName,jdbcType=VARCHAR},
-      card_id = #{record.cardId,jdbcType=INTEGER},
-      effective_date = #{record.effectiveDate,jdbcType=VARCHAR},
-      expire_date = #{record.expireDate,jdbcType=VARCHAR}
+      card_id = #{record.cardId,jdbcType=CHAR},
+      begin_date = #{record.beginDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,34 +221,38 @@
     update borrow
     <set>
       <if test="isbn != null">
-        isbn = #{isbn,jdbcType=VARCHAR},
+        isbn = #{isbn,jdbcType=CHAR},
       </if>
       <if test="bookName != null">
         book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="readerId != null">
+        reader_id = #{readerId,jdbcType=CHAR},
       </if>
       <if test="readerName != null">
         reader_name = #{readerName,jdbcType=VARCHAR},
       </if>
       <if test="cardId != null">
-        card_id = #{cardId,jdbcType=INTEGER},
+        card_id = #{cardId,jdbcType=CHAR},
       </if>
-      <if test="effectiveDate != null">
-        effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      <if test="beginDate != null">
+        begin_date = #{beginDate,jdbcType=DATE},
       </if>
-      <if test="expireDate != null">
-        expire_date = #{expireDate,jdbcType=VARCHAR},
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.Borrow">
     update borrow
-    set isbn = #{isbn,jdbcType=VARCHAR},
+    set isbn = #{isbn,jdbcType=CHAR},
       book_name = #{bookName,jdbcType=VARCHAR},
+      reader_id = #{readerId,jdbcType=CHAR},
       reader_name = #{readerName,jdbcType=VARCHAR},
-      card_id = #{cardId,jdbcType=INTEGER},
-      effective_date = #{effectiveDate,jdbcType=VARCHAR},
-      expire_date = #{expireDate,jdbcType=VARCHAR}
+      card_id = #{cardId,jdbcType=CHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

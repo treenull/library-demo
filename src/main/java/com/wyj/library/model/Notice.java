@@ -1,11 +1,13 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class Notice {
     private Integer id;
 
     private String title;
 
-    private String createDate;
+    private Date createDate;
 
     private Integer userId;
 
@@ -27,12 +29,12 @@ public class Notice {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate == null ? null : createDate.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Integer getUserId() {

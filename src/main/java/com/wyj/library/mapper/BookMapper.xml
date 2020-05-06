@@ -3,12 +3,12 @@
 <mapper namespace="com.wyj.library.mapper.BookMapper">
   <resultMap id="BaseResultMap" type="com.wyj.library.model.Book">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="isbn" jdbcType="CHAR" property="isbn" />
     <result column="book_name" jdbcType="VARCHAR" property="bookName" />
     <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="synopsis" jdbcType="VARCHAR" property="synopsis" />
     <result column="publisher" jdbcType="VARCHAR" property="publisher" />
-    <result column="publication_date" jdbcType="VARCHAR" property="publicationDate" />
+    <result column="publication_date" jdbcType="DATE" property="publicationDate" />
     <result column="last" jdbcType="INTEGER" property="last" />
     <result column="notes" jdbcType="VARCHAR" property="notes" />
   </resultMap>
@@ -108,9 +108,9 @@
       author, synopsis, publisher, 
       publication_date, last, notes
       )
-    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=CHAR}, #{bookName,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{synopsis,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
-      #{publicationDate,jdbcType=VARCHAR}, #{last,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR}
+      #{publicationDate,jdbcType=DATE}, #{last,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wyj.library.model.Book">
@@ -149,7 +149,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="isbn != null">
-        #{isbn,jdbcType=VARCHAR},
+        #{isbn,jdbcType=CHAR},
       </if>
       <if test="bookName != null">
         #{bookName,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
         #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="publicationDate != null">
-        #{publicationDate,jdbcType=VARCHAR},
+        #{publicationDate,jdbcType=DATE},
       </if>
       <if test="last != null">
         #{last,jdbcType=INTEGER},
@@ -187,7 +187,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.isbn != null">
-        isbn = #{record.isbn,jdbcType=VARCHAR},
+        isbn = #{record.isbn,jdbcType=CHAR},
       </if>
       <if test="record.bookName != null">
         book_name = #{record.bookName,jdbcType=VARCHAR},
@@ -202,7 +202,7 @@
         publisher = #{record.publisher,jdbcType=VARCHAR},
       </if>
       <if test="record.publicationDate != null">
-        publication_date = #{record.publicationDate,jdbcType=VARCHAR},
+        publication_date = #{record.publicationDate,jdbcType=DATE},
       </if>
       <if test="record.last != null">
         last = #{record.last,jdbcType=INTEGER},
@@ -218,12 +218,12 @@
   <update id="updateByExample" parameterType="map">
     update book
     set id = #{record.id,jdbcType=INTEGER},
-      isbn = #{record.isbn,jdbcType=VARCHAR},
+      isbn = #{record.isbn,jdbcType=CHAR},
       book_name = #{record.bookName,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
       synopsis = #{record.synopsis,jdbcType=VARCHAR},
       publisher = #{record.publisher,jdbcType=VARCHAR},
-      publication_date = #{record.publicationDate,jdbcType=VARCHAR},
+      publication_date = #{record.publicationDate,jdbcType=DATE},
       last = #{record.last,jdbcType=INTEGER},
       notes = #{record.notes,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -234,7 +234,7 @@
     update book
     <set>
       <if test="isbn != null">
-        isbn = #{isbn,jdbcType=VARCHAR},
+        isbn = #{isbn,jdbcType=CHAR},
       </if>
       <if test="bookName != null">
         book_name = #{bookName,jdbcType=VARCHAR},
@@ -249,7 +249,7 @@
         publisher = #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="publicationDate != null">
-        publication_date = #{publicationDate,jdbcType=VARCHAR},
+        publication_date = #{publicationDate,jdbcType=DATE},
       </if>
       <if test="last != null">
         last = #{last,jdbcType=INTEGER},
@@ -262,12 +262,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.Book">
     update book
-    set isbn = #{isbn,jdbcType=VARCHAR},
+    set isbn = #{isbn,jdbcType=CHAR},
       book_name = #{bookName,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       synopsis = #{synopsis,jdbcType=VARCHAR},
       publisher = #{publisher,jdbcType=VARCHAR},
-      publication_date = #{publicationDate,jdbcType=VARCHAR},
+      publication_date = #{publicationDate,jdbcType=DATE},
       last = #{last,jdbcType=INTEGER},
       notes = #{notes,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

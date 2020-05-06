@@ -1,5 +1,7 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class Borrow {
     private Integer id;
 
@@ -7,13 +9,15 @@ public class Borrow {
 
     private String bookName;
 
+    private String readerId;
+
     private String readerName;
 
-    private Integer cardId;
+    private String cardId;
 
-    private String effectiveDate;
+    private Date beginDate;
 
-    private String expireDate;
+    private Date endDate;
 
     public Integer getId() {
         return id;
@@ -39,6 +43,14 @@ public class Borrow {
         this.bookName = bookName == null ? null : bookName.trim();
     }
 
+    public String getReaderId() {
+        return readerId;
+    }
+
+    public void setReaderId(String readerId) {
+        this.readerId = readerId == null ? null : readerId.trim();
+    }
+
     public String getReaderName() {
         return readerName;
     }
@@ -47,27 +59,27 @@ public class Borrow {
         this.readerName = readerName == null ? null : readerName.trim();
     }
 
-    public Integer getCardId() {
+    public String getCardId() {
         return cardId;
     }
 
-    public void setCardId(Integer cardId) {
-        this.cardId = cardId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId == null ? null : cardId.trim();
     }
 
-    public String getEffectiveDate() {
-        return effectiveDate;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate == null ? null : effectiveDate.trim();
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
-    public String getExpireDate() {
-        return expireDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setExpireDate(String expireDate) {
-        this.expireDate = expireDate == null ? null : expireDate.trim();
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

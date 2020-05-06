@@ -2,12 +2,9 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.Document;
 import com.wyj.library.model.DocumentExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Component("documentMapper")
 public interface DocumentMapper {
     long countByExample(DocumentExample example);
 

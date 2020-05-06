@@ -2,12 +2,9 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.Book;
 import com.wyj.library.model.BookExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Component("bookMapper")
 public interface BookMapper {
     long countByExample(BookExample example);
 

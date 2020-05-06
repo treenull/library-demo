@@ -3,14 +3,13 @@ package com.wyj.library.mapper;
 import com.wyj.library.model.User;
 import com.wyj.library.model.UserExample;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("userMapper")
 public interface UserMapper {
+
     //手动添加的方法
-    List<User> checkUser(@Param("loginname") String loginname,@Param("password") String password);
+    List<User> checkUser(@Param("loginName") String loginName,@Param("password") String password);
 
     long countByExample(UserExample example);
 

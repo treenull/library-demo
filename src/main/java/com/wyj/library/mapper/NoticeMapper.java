@@ -2,12 +2,9 @@ package com.wyj.library.mapper;
 
 import com.wyj.library.model.Notice;
 import com.wyj.library.model.NoticeExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Component("noticeMapper")
 public interface NoticeMapper {
     long countByExample(NoticeExample example);
 

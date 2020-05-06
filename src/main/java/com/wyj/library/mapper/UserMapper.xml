@@ -3,16 +3,18 @@
 <mapper namespace="com.wyj.library.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.wyj.library.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="user_id" jdbcType="CHAR" property="userId" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
   </resultMap>
+
   <!--  手动添加自定义方法-->
   <!-- 用户登录检测 -->
   <select id="checkUser" parameterType="String" resultType="com.wyj.library.model.User">
-  		select * from user where loginname=#{loginname} and password=#{password}
+  		select * from user where login_name=#{loginName} and password=#{password}
  </select>
 
   <sql id="Example_Where_Clause">
@@ -74,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, loginname, password, status, create_time, username
+    id, user_id, login_name, user_name, password, status, create_date
   </sql>
   <select id="selectByExample" parameterType="com.wyj.library.model.UserExample" resultMap="BaseResultMap">
     select
@@ -107,12 +109,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wyj.library.model.User">
-    insert into user (id, loginname, password, 
-      status, create_time, username
-      )
-    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}
-      )
+    insert into user (id, user_id, login_name, 
+      user_name, password, status, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=CHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wyj.library.model.User">
     insert into user
@@ -120,8 +122,14 @@
       <if test="id != null">
         id,
       </if>
-      <if test="loginname != null">
-        loginname,
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="password != null">
         password,
@@ -129,19 +137,22 @@
       <if test="status != null">
         status,
       </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="username != null">
-        username,
+      <if test="createDate != null">
+        create_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="loginname != null">
-        #{loginname,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -149,11 +160,8 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -169,8 +177,14 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.loginname != null">
-        loginname = #{record.loginname,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=CHAR},
+      </if>
+      <if test="record.loginName != null">
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
@@ -178,11 +192,8 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -192,11 +203,12 @@
   <update id="updateByExample" parameterType="map">
     update user
     set id = #{record.id,jdbcType=INTEGER},
-      loginname = #{record.loginname,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=CHAR},
+      login_name = #{record.loginName,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      username = #{record.username,jdbcType=VARCHAR}
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -204,8 +216,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.wyj.library.model.User">
     update user
     <set>
-      <if test="loginname != null">
-        loginname = #{loginname,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
@@ -213,22 +231,20 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wyj.library.model.User">
     update user
-    set loginname = #{loginname,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=CHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      username = #{username,jdbcType=VARCHAR}
+      create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

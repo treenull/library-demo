@@ -1,15 +1,17 @@
 package com.wyj.library.model;
 
+import java.util.Date;
+
 public class Document {
     private Integer id;
 
     private String title;
 
-    private String filename;
+    private String fileName;
 
     private String remark;
 
-    private String createDate;
+    private Date createDate;
 
     private Integer userId;
 
@@ -29,12 +31,12 @@ public class Document {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getFilename() {
-        return filename;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename == null ? null : filename.trim();
+    public void setFileName(String fileName) {
+        this.fileName = fileName == null ? null : fileName.trim();
     }
 
     public String getRemark() {
@@ -45,12 +47,12 @@ public class Document {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate == null ? null : createDate.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Integer getUserId() {
