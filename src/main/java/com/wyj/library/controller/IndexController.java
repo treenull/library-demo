@@ -15,4 +15,14 @@ public class IndexController {
         return "loginForm";
     }
 
+    @GetMapping("/main")
+    public String toMain(){
+        return "main";
+    }
+
+    @GetMapping("/welcome")
+    public String toWelcome(){
+        return "welcome";
+    }
+
 }

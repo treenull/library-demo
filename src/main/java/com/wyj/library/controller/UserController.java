@@ -22,19 +22,19 @@ public class UserController {
     UserExample example;
 
     @RequestMapping(value="/login")
-    public ModelAndView login(@RequestParam("loginname") String loginname,
+    public ModelAndView login(@RequestParam("loginName") String loginName,
                               @RequestParam("password") String password,
                               HttpSession session,
                               ModelAndView mav){
         // 调用业务逻辑组件判断用户是否可以登录
-        List<User> user = userService.checkUser(loginname, password);
-        System.out.println(loginname);
+        List<User> user = userService.checkUser(loginName, password);
+        System.out.println(loginName);
         if(user.size()>0){
             // 将用户保存到HttpSession当中
             System.out.println("HttpSession");
-            session.setAttribute("loginUser", loginname);
+            session.setAttribute("loginUser", loginName);
             // 客户端跳转到main页面
-            mav.setViewName("redirect:/index.html");
+            mav.setViewName("redirect:/main");
         }else{
             // 设置登录失败提示信息
             System.out.println("设置登录失败提示信息");

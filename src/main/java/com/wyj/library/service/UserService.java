@@ -13,8 +13,8 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
-    public List<User> checkUser(String loginname, String password){
-        return userMapper.checkUser(loginname,password);
+    public List<User> checkUser(String loginName, String password){
+        return userMapper.checkUser(loginName,password);
     }
 
     public List<User> getAllUser(UserExample example){

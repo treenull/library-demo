@@ -11,8 +11,6 @@ spring:
     password: 12344321
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-  resources:
-    static-locations: classpath:/templates/,classpath:/static/
   thymeleaf:
     cache: false
     mode: HTML
