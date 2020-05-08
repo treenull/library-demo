@@ -6,8 +6,7 @@ import com.wyj.library.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +27,31 @@ public class NoticeController {
         return "notice/notice_list";
     }
 
+    @GetMapping("/add")
+    public String toNoticeAdd(){
+        return "notice/notice_add";
+    }
+
+    @PostMapping("/add")
+    public String addNotice(Notice notice){
+        noticeService.insertNotice(notice);
+        System.out.println("添加管理员信息"+notice);
+        return "notice/notice_list";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String toEditNotice(@PathVariable("id") Integer id, Model model){
+        Notice oneNotice = noticeService.getOneNotice(id);
+        System.out.println(oneNotice);
+        model.addAttribute("notice",oneNotice);
+        return "notice/notice_edit";
+    }
+
+    @PutMapping("/edit")
+    public String updateNotice(Notice notice){
+        noticeService.updateNotice(notice);
+        System.out.println("修改后的数据"+notice);
+        return "redirect:/notice/list";
+    }
 }

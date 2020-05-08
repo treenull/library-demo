@@ -17,4 +17,20 @@ public class DocumentService {
     public List<Document> getAllDocument(DocumentExample example){
         return documentMapper.selectByExample(example);
     }
+
+    public int insertDocument(Document document){
+        return documentMapper.insertSelective(document);
+    }
+
+    public Document getOneDocument(Integer id){
+        return documentMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateDocument(Document document){
+        return documentMapper.updateByPrimaryKey(document);
+    }
+
+    public int deleteDocument(Integer id){
+        return documentMapper.deleteByPrimaryKey(id);
+    }
 }

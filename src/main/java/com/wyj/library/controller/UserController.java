@@ -65,6 +65,11 @@ public class UserController {
 
     }
 
+    @GetMapping("/edit")
+    public String toEdit(Integer id){
+        return "user/user_edit";
+    }
+
     @GetMapping("/edit/{id}")
     public String toEditUser(@PathVariable("id") Integer id,Model model){
         User oneUser = userService.getOneUser(id);
@@ -83,7 +88,7 @@ public class UserController {
     public String updateUser(User user){
         userService.updateUser(user);
         System.out.println("修改后的数据"+user);
-        return "user/user_list";
+        return "redirect:/user/list";
     }
 
     @DeleteMapping("/delete/{id}")

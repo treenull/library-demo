@@ -48,7 +48,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','/user/add',600,500)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','/book/add',600,500)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -78,12 +78,13 @@
                                     <td th:text="${book.author}"></td>
                                     <td th:text="${book.synopsis}"></td>
                                     <td th:text="${book.publisher}"></td>
-                                    <td th:text="${book.publicationDate}"></td>
+                                    <td th:text="${#dates.format(book.publicationDate,'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${book.last}"></td>
                                     <td th:text="${book.notes}"></td>
                                     <td class="td-manage">
-                                        <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                            <i class="layui-icon">&#xe63c;</i></a>
+                                        <a title="查看" onclick="xadmin.open('编辑','/user/edit',600,500,)" th:href="@{/book/edit/}+${book.id}">
+                                            <i class="layui-icon">&#xe63c;</i>
+                                        </a>
                                         <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                             <i class="layui-icon">&#xe640;</i></a>
                                     </td>

@@ -17,4 +17,20 @@ public class BorrowService {
     public List<Borrow> getAllBorrow(BorrowExample example){
         return borrowMapper.selectByExample(example);
     }
+    
+    public int insertBorrow(Borrow borrow){
+        return borrowMapper.insertSelective(borrow);
+    }
+
+    public Borrow getOneBorrow(Integer id){
+        return borrowMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateBorrow(Borrow borrow){
+        return borrowMapper.updateByPrimaryKey(borrow);
+    }
+
+    public int deleteBorrow(Integer id){
+        return borrowMapper.deleteByPrimaryKey(id);
+    }
 }

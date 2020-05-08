@@ -17,4 +17,20 @@ public class ReaderService {
     public List<Reader> getAllReader(ReaderExample example){
         return readerMapper.selectByExample(example);
     }
+
+    public int insertReader(Reader reader){
+        return readerMapper.insertSelective(reader);
+    }
+
+    public Reader getOneReader(Integer id){
+        return readerMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateReader(Reader reader){
+        return readerMapper.updateByPrimaryKey(reader);
+    }
+
+    public int deleteReader(Integer id){
+        return readerMapper.deleteByPrimaryKey(id);
+    }
 }

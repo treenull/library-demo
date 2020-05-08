@@ -18,4 +18,20 @@ public class BookService {
         return bookMapper.selectByExample(example);
     }
 
+    public int insertBook(Book book){
+        return bookMapper.insertSelective(book);
+    }
+
+    public Book getOneBook(Integer id){
+        return bookMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateBook(Book book){
+        return bookMapper.updateByPrimaryKey(book);
+    }
+
+    public int deleteBook(Integer id){
+        return bookMapper.deleteByPrimaryKey(id);
+    }
+
 }

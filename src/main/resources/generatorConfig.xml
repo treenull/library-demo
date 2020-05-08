@@ -49,11 +49,11 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <!-- <table tableName="user" />-->
-        <table tableName="book" />
-        <table tableName="reader" />
-        <table tableName="borrow" />
-        <table tableName="notice" />
-        <table tableName="document" />
+<!--        <table tableName="user" />-->
+<!--        <table tableName="book" />-->
+<!--        <table tableName="reader" />-->
+<!--        <table tableName="borrow" />-->
+<!--        <table tableName="notice" />-->
+<!--        <table tableName="document" />-->
     </context>
 </generatorConfiguration>

@@ -6,8 +6,7 @@ import com.wyj.library.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +28,31 @@ public class DocumentController {
     }
 
 
+    @GetMapping("/add")
+    public String toDocumentAdd(){
+        return "document/document_add";
+    }
+
+    @PostMapping("/add")
+    public String addDocument(Document document){
+        documentService.insertDocument(document);
+        System.out.println("添加管理员信息"+document);
+        return "document/document_list";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String toEditDocument(@PathVariable("id") Integer id, Model model){
+        Document oneDocument = documentService.getOneDocument(id);
+        System.out.println(oneDocument);
+        model.addAttribute("document",oneDocument);
+        return "document/document_edit";
+    }
+
+    @PutMapping("/edit")
+    public String updateDocument(Document document){
+        documentService.updateDocument(document);
+        System.out.println("修改后的数据"+document);
+        return "redirect:/document/list";
+    }
 }

@@ -6,8 +6,7 @@ import com.wyj.library.service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +26,31 @@ public class BorrowController {
         return "borrow/borrow_list";
     }
 
+    @GetMapping("/add")
+    public String toBorrowAdd(){
+        return "borrow/borrow_add";
+    }
+
+    @PostMapping("/add")
+    public String addBorrow(Borrow borrow){
+        borrowService.insertBorrow(borrow);
+        System.out.println("添加管理员信息"+borrow);
+        return "borrow/borrow_list";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String toEditBorrow(@PathVariable("id") Integer id, Model model){
+        Borrow oneBorrow = borrowService.getOneBorrow(id);
+        System.out.println(oneBorrow);
+        model.addAttribute("borrow",oneBorrow);
+        return "borrow/borrow_edit";
+    }
+
+    @PutMapping("/edit")
+    public String updateBorrow(Borrow borrow){
+        borrowService.updateBorrow(borrow);
+        System.out.println("修改后的数据"+borrow);
+        return "redirect:/borrow/list";
+    }
 }

@@ -22,65 +22,86 @@
         <form class="layui-form" id="addUser"  th:action="@{/user/add}" method="post">
             <div class="layui-form-item">
                 <label for="userId" class="layui-form-label">
-                    <span class="x-red">*</span>ID
+                    <span class="x-red">*</span>姓名
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="userId" name="userId" required="" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>4位整数
+                    <span class="x-red">*</span>整数
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="loginName" class="layui-form-label">
-                    <span class="x-red">*</span>登录名
+                    <span class="x-red">*</span>借阅证号
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="loginName" name="loginName" required="" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的登入名
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label"><span class="x-red">*</span>角色</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="userName" lay-skin="primary" title="超级管理员" value="超级管理员">
-                    <input type="checkbox" name="userName" lay-skin="primary" title="编辑人员" value="编辑人员">
-                    <input type="checkbox" name="userName" lay-skin="primary" title="宣传人员" value="宣传人员">
+                    <span class="x-red">*</span>不用使用书名号
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="status" class="layui-form-label">
-                    <span class="x-red">*</span>等级
+                    <span class="x-red">*</span>性别
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="status" name="status" required=""
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>数字1~5
+                    <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>密码
+                <label for="status" class="layui-form-label">
+                    <span class="x-red">*</span>电话
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" id="L_pass" name="password" required="" lay-verify="pass"
+                    <input type="text" id="status" name="status" required=""
                            autocomplete="off" class="layui-input">
                 </div>
-                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                    <span class="x-red">*</span>确认密码
+                <label for="status" class="layui-form-label">
+                    <span class="x-red">*</span>住址
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
+                    <input type="text" id="status" name="status" required=""
                            autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="status" class="layui-form-label">
+                    <span class="x-red">*</span>民族
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="status" name="status" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="status" class="layui-form-label">
+                    <span class="x-red">*</span>学历
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="status" name="status" required=""
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">

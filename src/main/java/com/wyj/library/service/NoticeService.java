@@ -18,4 +18,20 @@ public class NoticeService {
         return noticeMapper.selectByExample(example);
     }
 
+    public int insertNotice(Notice notice){
+        return noticeMapper.insertSelective(notice);
+    }
+
+    public Notice getOneNotice(Integer id){
+        return noticeMapper.selectByPrimaryKey(id);
+    }
+
+    public int updateNotice(Notice notice){
+        return noticeMapper.updateByPrimaryKey(notice);
+    }
+
+    public int deleteNotice(Integer id){
+        return noticeMapper.deleteByPrimaryKey(id);
+    }
+
 }

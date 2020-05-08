@@ -79,7 +79,7 @@
                                     <td th:text="${user.loginName}"></td>
                                     <td th:text="${user.userName}"></td>
                                     <td th:text="${user.status}"></td>
-                                    <td th:text="${user.createDate}"></td>
+                                    <td th:text="${#dates.format(user.createDate,'yyyy-MM-dd HH:mm')}"></td>
                                   <td class="td-status">
                                     <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                                   <td class="td-manage">
@@ -89,9 +89,9 @@
                                     <a title="编辑"  onclick="xadmin.open('编辑','/user/edit',600,500,)" th:href="@{/user/edit/}+${user.id}">
                                       <i class="layui-icon">&#xe642;</i>
                                     </a>
-                                      <a title="删除" th:attr="del_uri=@{/user/delete/}+${user.id}" onclick="member_del(this,'${user.id}')" href="javascript:;">
-                                          <i class="layui-icon">&#xe640;</i>
-                                      </a>
+                                    <a title="删除" th:attr="del_uri=@{/user/delete/}+${user.id}" onclick="member_del(this,'${user.id}')" href="javascript:;">
+                                       <i class="layui-icon">&#xe640;</i>
+                                    </a>
 <!--                                    <a title="删除" onclick="member_del(this,'${user.id}')" href="javascript:;">-->
 <!--                                      <i class="layui-icon">&#xe640;</i>-->
 <!--                                    </a>-->
