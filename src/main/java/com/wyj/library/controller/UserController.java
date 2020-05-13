@@ -38,7 +38,7 @@ public class UserController {
         }else{
             // 设置登录失败提示信息
             System.out.println("设置登录失败提示信息");
-            mav.addObject("message", "登录名或密码错误!请重新输入!");
+            mav.addObject("loginErrMsg", "登录名或密码错误!请重新输入!");
             // 服务器内部跳转到登录页面
             mav.setViewName("loginForm");
         }
