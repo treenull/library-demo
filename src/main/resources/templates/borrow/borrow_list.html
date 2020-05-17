@@ -80,9 +80,9 @@
                                     <td th:text="${#dates.format(borrow.beginDate,'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${#dates.format(borrow.endDate,'yyyy-MM-dd HH:mm')}"></td>
                                     <td class="td-manage">
-                                        <a title="查看" onclick="xadmin.open('编辑','/borrow/edit',600,500,)" th:href="@{/borrow/edit/}+${borrow.id}">
+                                        <a title="查看" th:onclick="xadmin.open('编辑','/borrow/edit/[[${borrow.id}]]',600,500,)">
                                             <i class="layui-icon">&#xe63c;</i></a>
-                                        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                        <a title="删除" th:onclick="member_del('this',[[${borrow.id}]])" href="javascript:;">
                                             <i class="layui-icon">&#xe640;</i></a>
                                     </td>
                                   </td>
@@ -129,9 +129,16 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+              $.ajax({
+                  url:"/borrow/delete/" + id,
+                  type:"post",
+                  data:{_method:'delete'},
+                  success:function (result) {
+                      // 请求成功后的回调函数
+                      $(obj).parents("tr").remove();
+                      layer.msg('已删除!',{icon:1,time:1000});
+                  }
+              });
           });
       }
 

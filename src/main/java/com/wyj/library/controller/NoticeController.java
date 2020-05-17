@@ -54,4 +54,13 @@ public class NoticeController {
         System.out.println("修改后的数据"+notice);
         return "redirect:/notice/list";
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer id){
+        System.out.println(id);
+//        if(id!=null){
+//            userService.deleteUser(id);
+//        }
+        return "redirect:/notice/list";
+    }
 }
