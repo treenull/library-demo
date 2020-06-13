@@ -2,6 +2,12 @@
 
 图书后台管理系统，采用SpringBoot+Thymeleaf，页面使用LayUI框架，使用RESTful API风格编写接口。
 
+#### 已实现功能
+
+- [x] 基本增删改查(RESTful API风格)
+- [x] 拦截器
+- [ ] ...
+
 #### 项目技术栈
 
 - Spring Boot
@@ -9,6 +15,7 @@
 - MySQL
 - Thymeleaf
 - ...
+
 
 #### 项目预览
 
@@ -29,11 +36,11 @@
 
 |              | 请求URI   | 请求方式 |
 | ------------ | --------- | -------- |
-| 查询所有员工 | users     | GET      |
-| 查询某个员工 | user/{id} | GET      |
+| 查询所有人员 | users     | GET      |
+| 查询某个人员 | user/{id} | GET      |
 | 来到添加页面 | user      | GET      |
-| 添加员工     | user      | POST     |
+| 添加人员     | user      | POST     |
 | 来到修改页面 | use/{id}  | GET      |
-| 修改员工     | user      | PUT      |
-| 删除员工     | user/{id} | DELETE   |
+| 修改人员     | user      | PUT      |
+| 删除人员     | user/{id} | DELETE   |
 
